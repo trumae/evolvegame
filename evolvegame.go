@@ -1,15 +1,22 @@
 package main
 
-import "fmt"
-import "math/rand"
-import "time"
-import eg "github.com/trumae/evolvegamelib"
+import (
+ "fmt"
+ "flag"
+ "math/rand"
+ "time"
+ eg "github.com/trumae/evolvegamelib"
+)
+
+var numCycles int
 
 func main() {
-	fmt.Print("Hello 2\n")
+        fmt.Print("EvolveGame\n\n")
+	flag.IntVar(&numCycles, "numCycles", 100, "Number of evolution cycles (default: 100)")
+	flag.Parse()
         rand.Seed(time.Now().UnixNano())
 	a := eg.NewArenaSample()
-	a.Evolution(200)
+	a.Evolution(numCycles)
         a.DrawWorld()
 }
 
